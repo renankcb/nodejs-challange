@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express';
-import * as api from './Api'
+import * as api from './Api';
+import * as util from './Util';
 
 class FlightsController {
   public path = '/flights';
@@ -30,7 +31,7 @@ class FlightsController {
         flight['id'] = id;
       })
 
-      const uniqueFlights = removeDuplicateObjectsFromArray(allFlights, 'id');
+      const uniqueFlights = util.removeDuplicateObjectsFromArray(allFlights, 'id');
 
      return response.status(200).json({success: true, results: {uniqueFlights} });
     } catch (error) {
@@ -41,8 +42,6 @@ class FlightsController {
 
 }
 
-export const removeDuplicateObjectsFromArray = (array: Array<any>, keyToCompare: string): Array<any> => {
-  return Array.from(new Map(array.map(i => [(keyToCompare in i) ? i[keyToCompare] : i, i])).values());
-}
+
 
 export default FlightsController;
