@@ -18,7 +18,7 @@ class App {
     this.app.use(bodyParser.json());
   }
  
-  private initializeControllers(controllers: Array<any>): void {
+  private initializeControllers(controllers: Array<IController>): void {
     controllers.forEach((controller) => {
       this.app.use('/', controller.router);
     });
