@@ -1,5 +1,5 @@
 import App from './app';
-import FlightsController from './Features/Flights/FlightsController';
+import FlightsController from './features/flights/FlightsController';
  
 const app = new App(
   [

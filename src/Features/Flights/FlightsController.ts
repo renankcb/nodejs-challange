@@ -28,7 +28,7 @@ class FlightsController {
 
       const flightsSortByLessStops = FlightManager.sortByLessStops([...uniqueFlights]);
 
-     return response.status(200).json({success: true, results: {flights: flightsSortByDurationTime} });
+     return response.status(200).json({success: true, results: {flights: uniqueFlights} });
     } catch (error) {
       next(error) //LOG error
       return response.status(500).json({success: true, result: 'Error retrieving flights' });
