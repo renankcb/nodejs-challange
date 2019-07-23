@@ -1,4 +1,4 @@
-[
+export const flightsMock = [
   {
       "slices": [
           {
@@ -900,4 +900,4 @@
       ],
       "price": 147.9
   }
-]
+].toString()

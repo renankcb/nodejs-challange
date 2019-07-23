@@ -13,7 +13,8 @@ class FlightManager {
           id += `${segment.number + segment.departure_date_time.utc + segment.arrival_date_time.utc}`;
         });
       });
-  
+      
+      // the idea is create unique ID to each flight based on number and dates
       flight.id = id;
     });
   

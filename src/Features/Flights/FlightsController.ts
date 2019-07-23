@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express';
-import * as api from '../../Api';
+import { getRequest } from '../../Api';
 import FlightManager from './FlightsManager';
 
 class FlightsController {
@@ -16,7 +16,7 @@ class FlightsController {
 
   async getAllFlights(request: Request, response: Response, next: Function): Promise<Response> {
     try {
-      const [resultSource1, resultSource2] = await Promise.all([api.getRequest('source1'), api.getRequest('source2')]);
+      const [resultSource1, resultSource2] = await Promise.all([getRequest('source1'), getRequest('source2')]);
 
       const allFlights = [...resultSource1.data.flights, ...resultSource2.data.flights];
 
