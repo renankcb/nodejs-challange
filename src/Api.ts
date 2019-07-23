@@ -5,6 +5,7 @@ export const getRequest = async (path: string): Promise<axios.AxiosResponse<Flig
   try {
     const source = await axios.default.get(`https://discovery-stub.comtravo.com/${path}`, {
       withCredentials: true,
+      //move credentials and urls to env file
       auth: {
         username: 'ct_interviewee',
         password: 'supersecret'
