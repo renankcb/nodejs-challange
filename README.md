@@ -1,4 +1,4 @@
-# nodejs-challange
+# nodejs-challenge
 
 NodeJS API to consume different resources and merge results, extracting best results.
 
