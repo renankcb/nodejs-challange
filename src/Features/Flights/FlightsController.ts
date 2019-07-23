@@ -17,19 +17,17 @@ class FlightsController implements IController {
 
   async getAllFlights(request: Request, response: Response, next: Function): Promise<Response> {
     try {
+      const sortBy = request.query['sortBy'];
+
       const [resultSource1, resultSource2] = await Promise.all([getRequest('source1'), getRequest('source2')]);
 
       const allFlights = [...resultSource1.data.flights, ...resultSource2.data.flights];
 
       const uniqueFlights = FlightManager.removeDuplicateObjectsFromArray(allFlights);
 
-      const flightsSortByDurationTime = FlightManager.sortByDurationTime([...uniqueFlights]);
+      const result = FlightManager.sortBy([...uniqueFlights],sortBy)
 
-      const flightsSortByPrice = FlightManager.sortByPrice([...uniqueFlights]);
-
-      const flightsSortByLessStops = FlightManager.sortByLessStops([...uniqueFlights]);
-
-     return response.status(200).json({success: true, results: {flights: uniqueFlights} });
+     return response.status(200).json({success: true, results: {flights: result} });
     } catch (error) {
       next(error) //LOG error
       return response.status(500).json({success: true, result: 'Error retrieving flights' });
@@ -37,7 +35,5 @@ class FlightsController implements IController {
   } 
 
 }
-
-
 
 export default FlightsController;

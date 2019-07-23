@@ -33,6 +33,18 @@ class FlightManager {
   sortByLessStops(flights: Flight[]): Flight[] {
     return flights.sort((a: Flight, b: Flight) => a.slices.length < b.slices.length ? -1 : 1);
   }
+
+  sortBy(flights: Flight[], sortBy: string) {
+    if (sortBy === 'price'){
+      return this.sortByPrice(flights);
+    } else if (sortBy === 'durationTime') {
+      return this.sortByDurationTime(flights);
+    } else if (sortBy === 'stops') {
+      return this.sortByLessStops(flights);
+    } else {
+      return flights;
+    }
+  }
 }
 
 export default new FlightManager();
