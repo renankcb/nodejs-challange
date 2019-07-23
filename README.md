@@ -20,3 +20,10 @@ Clone or download code and run `npm install` . After that run command `npm run d
 
 Clone or download code and run `npm install`. After that run command `npm t`.
 
+# API
+
+/flights -> return merge of two sources without duplicates.
+
+query `sortBy`-> sort flights by dynamic query param:  `price`, `durationTime`, `stops`
+
+ex: `/flights?sortBy=price`
