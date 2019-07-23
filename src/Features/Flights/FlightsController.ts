@@ -1,8 +1,9 @@
+import { IController } from './../../IController';
 import { Request, Response, Router } from 'express';
 import { getRequest } from '../../Api';
 import FlightManager from './FlightsManager';
 
-class FlightsController {
+class FlightsController implements IController {
   public path = '/flights';
   public router = Router();
 

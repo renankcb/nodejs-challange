@@ -1,11 +1,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import { IController } from './IController';
  
 class App {
   public app: express.Application;
   public port: number;
  
-  constructor(controllers: Array<any>, port: number) {
+  constructor(controllers: Array<IController>, port: number) {
     this.app = express();
     this.port = port;
  
