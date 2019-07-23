@@ -16,3 +16,7 @@ NodeJS API to consume different resources and merge results, extracting best res
 
 Clone or download code and run `npm install` . After that run command `npm run dev`.
 
+# Running Tests
+
+Clone or download code and run `npm install`. After that run command `npm t`.
+
