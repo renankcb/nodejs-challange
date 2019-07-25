@@ -34,7 +34,13 @@ class FlightsController implements IController {
         result = FlightManager.ranking([...allFlights]);
       }
 
-     return response.status(200).json({success: true, results: {flights: result} });
+     return response.status(200).json(
+       {
+         success: true, 
+         source1Status: resultSource1 === null ? 'fail' : 'success',
+         source2Status: resultSource2 === null ? 'fail' : 'success',
+         results: {flights: result} 
+        });
     } catch (error) {
       next(error) //LOG error
       return response.status(500).json({success: false, result: 'Error retrieving flights' });
