@@ -9,7 +9,7 @@ class App {
   constructor(controllers: Array<IController>, port: number) {
     this.app = express();
     this.port = port;
- 
+
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
   }
