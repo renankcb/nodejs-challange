@@ -19,19 +19,6 @@ class FlightManager {
     return Array.from(new Map(array.map(i => [i.id, i])).values());
   }
 
-  private sortByPrice(flights: Flight[]): Flight[] {
-    return flights.sort((a: Flight, b: Flight) => a.price < b.price ? -1 : 1);
-  }
-
-  private sortByDurationTime(flights: Flight[]): Flight[] {
-    const reducer = (accumulator: number, currentValue: number) => accumulator + currentValue;
-    return flights.sort((a: Flight, b: Flight) => a.slices.map(s => s.duration).reduce(reducer) < b.slices.map(s => s.duration).reduce(reducer) ? -1 : 1);
-  }
-
-  private sortByLessStops(flights: Flight[]): Flight[] {
-    return flights.sort((a: Flight, b: Flight) => a.slices.length < b.slices.length ? -1 : 1);
-  }
-
   ranking(array: Flight[]): Flight[] {
     const flights = this.removeDuplicateObjectsFromArray([...array]);
 
@@ -42,6 +29,7 @@ class FlightManager {
       const durationTimeA = a.slices.map(s => s.duration).reduce(sum);
       const durationTimeB = b.slices.map(s => s.duration).reduce(sum)
 
+      // relevance order: stops > price > duration time
       if (a.slices.length < b.slices.length || a.price < b.price || durationTimeA < durationTimeB) return -1;
 
       if (a.slices.length > b.slices.length || a.price > b.price || durationTimeA > durationTimeB) return 1;
@@ -62,6 +50,19 @@ class FlightManager {
     } else {
       return flights;
     }
+  }
+
+  private sortByPrice(flights: Flight[]): Flight[] {
+    return flights.sort((a: Flight, b: Flight) => a.price < b.price ? -1 : 1);
+  }
+
+  private sortByDurationTime(flights: Flight[]): Flight[] {
+    const reducer = (accumulator: number, currentValue: number) => accumulator + currentValue;
+    return flights.sort((a: Flight, b: Flight) => a.slices.map(s => s.duration).reduce(reducer) < b.slices.map(s => s.duration).reduce(reducer) ? -1 : 1);
+  }
+
+  private sortByLessStops(flights: Flight[]): Flight[] {
+    return flights.sort((a: Flight, b: Flight) => a.slices.length < b.slices.length ? -1 : 1);
   }
 }
 

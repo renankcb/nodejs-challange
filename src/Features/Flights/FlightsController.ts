@@ -37,8 +37,8 @@ class FlightsController implements IController {
      return response.status(200).json(
        {
          success: true, 
-         source1Status: resultSource1 === null ? 'fail' : 'success',
-         source2Status: resultSource2 === null ? 'fail' : 'success',
+         successSource1: resultSource1 === null ? false : true,
+         successSource2: resultSource2 === null ? false : true,
          results: {flights: result} 
         });
     } catch (error) {
