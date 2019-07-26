@@ -27,3 +27,10 @@ Clone or download code and run `npm install`. After that run command `npm t`.
 query `sortBy`-> sort flights by dynamic query param:  `price`, `durationTime`, `stops`
 
 ex: `/flights?sortBy=price`
+
+# Requirements
+
+* consume two APIs
+* merge results and remove duplicates (based on flight number and date)
+* rank result
+* return result in max. 1 second
