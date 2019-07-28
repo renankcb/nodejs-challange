@@ -1,5 +1,6 @@
 import * as axios from 'axios';
 import Flights from './models/Flights'
+import { stub } from './Config/Config'
 
 class Api {
   async getRequest(path: string): Promise<axios.AxiosResponse<Flights>> {
@@ -9,14 +10,10 @@ class Api {
   private async axiosRequest(path: string, start: [number, number], timeout: number): Promise<axios.AxiosResponse<Flights>>  {
     try {
       console.log(`start ${path}`) //LOG start
-      const source = await axios.default.get(`https://discovery-stub.comtravo.com/${path}`, {
+      const source = await axios.default.get(`${stub.url}/${path}`, {
         withCredentials: true,
         timeout: timeout,
-        //move credentials and urls to env file
-        auth: {
-          username: 'ct_interviewee',
-          password: 'supersecret'
-        }
+        auth: stub.credentials
       });
       console.log(`success ${path}`); //LOG success
       return source;
