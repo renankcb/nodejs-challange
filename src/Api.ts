@@ -20,8 +20,8 @@ class Api {
     } catch (error) {
       console.log(`error ${path}`);  //LOG error
 
-      const endTime = Math.round(process.hrtime(start)[1]/1000000);
-      timeout = timeout - endTime;
+      const reqExecutionTime = Math.round(process.hrtime(start)[1]/1000000);
+      timeout = timeout - reqExecutionTime;
 
       if (timeout <= 0) {
         return null;
